@@ -23,6 +23,16 @@ This is a project that shows how to use the following stack with clojure:
 
 This is a project in java 17.
 
+You have to run `clj -Mdev -e "(require 'cloped.dev)(in-ns 'cloped.dev)" -r` so the REPL will be prompted on dev file, this
+will allow you add anything from your toolbox for local development with REPL, Morse is an example.
+
+# Base of this project
+
+The base of this project is the Pedestal + Component guide available in Pedestal docs
+
+# Installation
+
+You can download dependencies with `clj -P`
 ___
 
 TODO changes description below this
