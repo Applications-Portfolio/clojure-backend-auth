@@ -8,7 +8,10 @@
         org.slf4j/slf4j-simple          {:mvn/version "1.7.28"}
         clj-http/clj-http               {:mvn/version "3.12.3"}}
  :aliases
- {:run-m {:main-opts ["-m" "cloped.clojure-backend-auth"]}
+ {:api {:ns-default cloped.core
+        :exec-fn start-api
+        :exec-args {:env :prod}}
+  :run-m {:main-opts ["-m" "cloped.clojure-backend-auth"]}
   :run-x {:ns-default cloped.clojure-backend-auth
           :exec-fn greet
           :exec-args {:name "Clojure"}}
