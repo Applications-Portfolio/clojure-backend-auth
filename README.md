@@ -26,6 +26,10 @@ This is a project in java 17.
 You have to run `clj -Mdev` so the REPL will be prompted on dev/user.clj file, this
 will allow you add anything from your toolbox for local development with REPL, Morse is an example.
 
+# Run without REPL
+
+To fast run you can just run `clj -X:exec` on your terminal. It will run a dev local API, if you need to run simulating production configuration just run `clj -X:exec:prod`.
+
 # Base of this project
 
 The base of this project is the Pedestal +

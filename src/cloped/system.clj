@@ -1,8 +1,10 @@
 (ns cloped.system
   (:require [com.stuartsierra.component :as component]
-            [cloped.pedestal :as pedestal]))
+            [cloped.pedestal :as pedestal]
+            [cloped.config :as config]))
 
 (defn new-system
   [env]
   (component/system-map
-    :pedestal      (pedestal/new-instance env)))
+    :config   (config/map->Config {:env env})
+    :pedestal (component/using (pedestal/map->Pedestal {:env env}) [:config])))

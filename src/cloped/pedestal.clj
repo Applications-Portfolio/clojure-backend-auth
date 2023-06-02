@@ -3,16 +3,19 @@
             [io.pedestal.http :as http]
             [io.pedestal.http.route :as route]
             [cloped.routes :as routes]
-            [cloped.interceptors :as interceptors]))
+            [cloped.interceptors.core :as interceptors]
+            [cloped.config :as config]))
 
 (defn test?
   [service-map]
   (= :test (:env service-map)))
 
 (defrecord Pedestal [env
-                     service]
+                     service
+                     config]
   component/Lifecycle
   (start [this]
+    (println "Starting Pedestal API on env" env)
     ;; This is for interceptor manual download
     (when-not service
       (cond-> {:env          env
@@ -20,7 +23,7 @@
                                routes/routes
                                #(route/expand-routes (deref (var routes/routes))))
                ::http/type   :jetty
-               ::http/port   8890
+               ::http/port   (config/get-config config :port)
                ::http/join?  false}
         true               http/default-interceptors
         (= env :dev)       http/dev-interceptors
@@ -32,5 +35,3 @@
     (when (and service (not= env :test))
       (http/stop service))
     (assoc this :service nil)))
-
-(defn new-instance [env] (map->Pedestal {:env env}))
