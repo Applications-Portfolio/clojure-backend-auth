@@ -19,5 +19,6 @@
          :exec-fn -main}
   :prod {:exec-args {:env :prod}}
   :dev  {:extra-paths ["dev"]
-         :extra-deps {org.clojure/tools.namespace {:mvn/version "1.4.4"}
-                      io.github.nubank/morse {:git/tag "v2023.04.30.01" :git/sha "d99b09c"}}}}}
+         :extra-deps {org.clojure/tools.namespace   {:mvn/version "1.4.4"}
+                      io.github.nubank/morse        {:git/tag "v2023.04.30.01" :git/sha "d99b09c"}
+                      djblue/portal                 {:mvn/version "0.42.0"}}}}}

@@ -1,4 +1,5 @@
-(ns cloped.routes)
+(ns cloped.routes
+  (:require [dev.nu.morse :as morse]))
 
 (defn health-check
   [_]
@@ -13,6 +14,9 @@
                        {:id   3
                         :name "Hat"})})
 
+(defn authenticate-user
+  [username password])
+
 (def routes
   #{["/health"
      :get `health-check
@@ -21,3 +25,15 @@
     ["/products"
      :get `list-products
      :route-name :list-products]})
+
+(comment
+  (require '[user :as user])
+  (user/get-system))
+
+(comment
+  (require '[dev.nu.morse :as morse])
+  (doto (list-products nil) (morse/inspect)))
+
+(comment
+  ; Tap> will send to portal and to morse
+  (doto (list-products nil) (tap>)))
