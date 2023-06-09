@@ -37,3 +37,7 @@
 (comment
   ; Tap> will send to portal and to morse
   (doto (list-products nil) (tap>)))
+
+(comment
+  (require '[user :as user])
+  (user/get-from-api "/products"))
